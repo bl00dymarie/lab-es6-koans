@@ -23,11 +23,13 @@ describe("`let` vs. `var`.", () => {
 describe("`const` is like `let` plus read-only. ", () => {
   it("primitives declared with `const` cannot be reassigned", () => {
     /*let or const? x = 0;*/
-    // expect(() => { x = 1; }).toThrow()
+    const x = 0
+    expect(() => { x = 1; }).toThrow()
   });
   it("objects declared with `const` cannot be reassigned", () => {
     /*let or const? y = [1, 2, 3];*/
-    // expect(() => { y = [4, 5, 6]; }).toThrow()
+    const y = [1,2,3]
+    expect(() => { y = [4, 5, 6]; }).toThrow()
   });
 
   it("objects declared with `const` can still be mutated", () => {
@@ -35,15 +37,17 @@ describe("`const` is like `let` plus read-only. ", () => {
     const obj = { x: 1 };
 
     /* write your code here */
-
-    // expect(arr[0]).toBe(0);
-    // expect(obj.x).toBe(2);
+    arr[0] = 0
+    obj.x = 2
+    expect(arr[0]).toBe(0);
+    expect(obj.x).toBe(2);
   });
 
   it("`const` scope leaks too", () => {
     /*`const`? notChangeable = 23;*/
+    const notChangeable = 23
     if (true) {
-      // expect(notChangeable).toBe(23);
+      expect(notChangeable).toBe(23);
     }
   });
 });
