@@ -55,113 +55,52 @@ describe("`const` is like `let` plus read-only. ", () => {
 describe("`string.includes()` finds string within another string. ", () => {
   it("returns `true` if a character is found in a string", () => {
     /* const char = ???? */
-    // expect('xyz'.includes(char)).toBe(true);
+    const char = "y"
+    expect('xyz'.includes(char)).toBe(true);
   });
   it("returns `false` if character was not found", () => {
     /* const char = ???? */
-    // expect('xyz'.includes(char)).toBe(false);
+    const char = 'a'
+    expect('xyz'.includes(char)).toBe(false);
   });
   it("returns `true` if a string is found in a string", () => {
     /* const searchString = ???? */
-    // expect('Hello World'.includes(searchString)).toBe(true);
+    const searchString = "llo "
+    expect('Hello World'.includes(searchString)).toBe(true);
   });
   it("returns `false` if string was not found", () => {
     /* const searchString = ???? */
-    // expect('Hello World'.includes(searchString)).toBe(false);
+    const searchString = "Hallo"
+    expect('Hello World'.includes(searchString)).toBe(false);
   });
-
   it("does not find `a` after position 1 in `abc`", () => {
     /* const position = ???? */
-    // expect('abc'.includes('a', position)).toBe(false);
+    const position = 1
+    expect('abc'.includes('a', position)).toBe(false);
   });
   it("even the position gets coerced", () => {
     /* const position = ???? */
-    // expect(typeof position).toBe("string")
-    // expect('abc'.includes('c', position)).toBe(true);
+    const position = "2"
+    expect(typeof position).toBe("string")
+    expect('abc'.includes('c', position)).toBe(true);
   });
   it("invalid positions get converted to 0`", () => {
     /* let position = ???? */
-    // expect(position).toBeUndefined()
-    // expect('abc'.includes('a', position)).toBe(true);
+    let position = undefined
+    expect(position).toBeUndefined()
+    expect('abc'.includes('a', position)).toBe(true);
   });
   it("negative numbers get converted to 0", () => {
     /* const position = ???? */
-    // expect(position).toBeLessThan(0)
-    // expect('abc'.includes('a', position)).toBe(true);
+    const position = -1
+    expect(position).toBeLessThan(0)
+    expect('abc'.includes('a', position)).toBe(true);
   });
   it("NaN", () => {
     /* const position = ???? */
-    // expect(position).toBeNaN()
-    // expect('abc'.includes('a', position)).toBe(true);
-  });
-});
-
-describe("a template string, is wrapped in ` (backticks) instead of ' or \". ", () => {
-  describe("by default, behaves like a normal string", function () {
-    it("just surrounded by backticks", function () {
-      /* let str = ?????? */
-      // expect(str).toEqual('like a string');
-    });
-  });
-
-  let x = 42;
-  let y = 23;
-
-  describe('can evaluate variables, which are wrapped in "${" and "}"', function () {
-    it('e.g. a simple variable "${x}" just gets evaluated', function () {
-      let evaluated = `x = x`;
-      // expect(evaluated).toBe('x = ' + x);
-    });
-
-    it("multiple variables get evaluated too", function () {
-      var evaluated = `x + y`;
-      // expect(evaluated).toBe(x + ' + ' + y);
-    });
-  });
-
-  describe('can evaluate any expression, wrapped inside "${...}"', function () {
-    it('all inside "${...}" gets evaluated', function () {
-      var evaluated = Number(`x + y`);
-      // expect(evaluated).toBe(x + y);
-    });
-
-    it('inside "${...}" can also be a function call', function () {
-      function getSchool() {
-        return "Ironhack";
-      }
-      var evaluated = `getSchool()`;
-      // expect(evaluated).toBe('Ironhack');
-    });
-  });
-});
-
-describe("The object literal allows for new shorthands. ", () => {
-  const x = 1;
-  const y = 2;
-
-  describe("with variables", () => {
-    it("the short version for `{ y: y }` is { y }", () => {
-      /*.....*/
-      // expect(short).toEqual({ y: y });
-    });
-    it("works with multiple variables too", () => {
-      /*.....*/
-      // expect(short).toEqual({ x: x, y: y });
-    });
-  });
-
-  describe("with functions", () => {
-    const func = () => func;
-
-    it("using the name only uses it as key", () => {
-      /*.......*/
-      // expect(short).toEqual({func: func});
-    });
-
-    it("a different key must be given explicitly, just like before ES6", () => {
-      /*.......*/
-      // expect(longer).toEqual({ otherKey: func });
-    });
+    const position = NaN
+    expect(position).toBeNaN()
+    expect('abc'.includes('a', position)).toBe(true);
   });
 });
 
