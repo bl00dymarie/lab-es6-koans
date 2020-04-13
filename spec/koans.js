@@ -4,17 +4,19 @@ describe("`let` vs. `var`.", () => {
   it("the scope for `var` is not restricted to the block", () => {
     if (true) {
       /* use the correct keyword to initialize `varX` here */
+      var varX = true
     }
-    // expect(varX).toBe(true);
+    expect(varX).toBe(true);
   });
 
   it("`let` restricts scope to inside the block", () => {
     /* initialize the variable `letX` */
     /* here ? */
+    let letX = true
     if (true) {
       /* or here ? */
     }
-    // expect(letX).toBe(true);
+    expect(letX).toBe(true);
   });
 });
 
