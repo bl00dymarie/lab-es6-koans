@@ -104,6 +104,75 @@ describe("`string.includes()` finds string within another string. ", () => {
   });
 });
 
+describe("a template string, is wrapped in ` (backticks) instead of ' or \". ", () => {
+  describe("by default, behaves like a normal string", function () {
+    it("just surrounded by backticks", function () {
+      let str = `like a string`
+      expect(str).toEqual('like a string');
+    });
+  });
+
+  let x = 42;
+  let y = 23;
+
+  describe('can evaluate variables, which are wrapped in "${" and "}"', function () {
+    it('e.g. a simple variable "${x}" just gets evaluated', function () {
+      let evaluated = `x = ${x}`;
+      expect(evaluated).toBe('x = ' + x);
+    });
+
+    it("multiple variables get evaluated too", function () {
+      var evaluated = `${x} + ${y}`;
+      expect(evaluated).toBe(x + ' + ' + y);
+    });
+  });
+
+  describe('can evaluate any expression, wrapped inside "${...}"', function () {
+    it('all inside "${...}" gets evaluated', function () {
+      var evaluated = Number(`${x + y}`);
+      expect(evaluated).toBe(x + y);
+    });
+
+    it('inside "${...}" can also be a function call', function () {
+      function getSchool() {
+        return "Ironhack";
+      }
+      var evaluated = `${getSchool()}`;
+      expect(evaluated).toBe('Ironhack');
+    });
+  });
+});
+
+describe("The object literal allows for new shorthands. ", () => {
+  const x = 1;
+  const y = 2;
+
+  describe("with variables", () => {
+    it("the short version for `{ y: y }` is { y }", () => {
+      const short = { y }
+      expect(short).toEqual({ y: y });
+    });
+    it("works with multiple variables too", () => {
+      const short = { x, y }
+      expect(short).toEqual({ x: x, y: y });
+    });
+  });
+
+  describe("with functions", () => {
+    const func = () => func;
+
+    it("using the name only uses it as key", () => {
+      const short = { func }
+      expect(short).toEqual({func: func});
+    });
+
+    it("a different key must be given explicitly, just like before ES6", () => {
+      const longer = { otherKey: func }
+      expect(longer).toEqual({ otherKey: func });
+    });
+  });
+});
+
 describe("destructuring arrays makes shorter code. ", () => {
   it("extract value from array, e.g. extract 0 into x like so `let [x] = [0];`", () => {
     const arr = [1];
